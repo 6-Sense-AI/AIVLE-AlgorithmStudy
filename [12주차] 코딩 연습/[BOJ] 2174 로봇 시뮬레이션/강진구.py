@@ -1,4 +1,7 @@
 from collections import defaultdict, deque
+import sys
+
+input = sys.stdin.readline
 
 a,b = map(int, input().split())
 n,m = map(int, input().split())
@@ -16,7 +19,7 @@ for _ in range(m):
     i,c,n = input().split()
     command.append((int(i),c,int(n)))
 
-direction = {'N':(1,0),'S':(-1,0), 'E':(0,1), 'W':(0,-1)}
+direction = {'N':(-1,0),'S':(1,0), 'E':(0,1), 'W':(0,-1)}
 
 def change_dir(com,d):
     if com=='L':
