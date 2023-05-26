@@ -3,45 +3,42 @@
 
 # 물에 잠기려면 우선 최소 높이부터 시작 -> 최대 높이까지 확인
 
+from collections import deque
 
 import sys
 input = sys.stdin.readline
 
-# 안전한 지역인지 구분하는 함수
-def is_safe(hmap, water, visited):    # dfs,,,
-    # hmap: 지역 높이 리스트, water: 침수된 지역인지, visited: 안전한 지역인지 확인한 곳인지
-    
-    # 상하좌우 연결된 모든 안전한 지역 탐색
-    
-    
-    return True
+n = int(input())
+cities = [list(map(int, input().split())) for _ in range(n)]
 
-# 잠기는 지점 표시
-def do_water(hmap, water, n, height):
-    # hmap: 지역 높이 리스트, water: 침수된 지역인지, n: hmap의 너비, height: 침수 기준 높이
+move = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+res = 0
+
+def is_safe(row, col, visited, height):
+    # 큐 선언
+    q = deque([(row, col)])
+    visited[row][col] = True    # 방문처리
+    
+    while q:
+        r, c = q.pop()
+        for mover, movec in move:
+            mr = r + mover
+            mc = c + movec
+            
+            if (0 <= mr < n) and (0 <= mc < n):
+                if not visited[mr][mc] and cities[mr][mc] > height:
+                    visited[mr][mc] = True
+                    q.append((mr, mc))
+
+for i in range(max(map(max, cities))):    # 비의 양이 높이 1보다 작을 수 있으므로 포함해주기
+    visited = [[False] * n for _ in range(n)]
+    now = 0
     
     for r in range(n):
         for c in range(n):
-            if hmap[r][c] <= height:
-                water[r][c] = True
-    
-    return water
-
-n = int(input())
-min_h, max_h = int(1e3), 0    # 최소, 최대 높이
-hmap = []    # 높이 정보 리스트
-for _ in range(n):
-    tmp = list(map(int, input().split()))
-    hmap.append(tmp)
-    min_h, max_h = min(min_h, min(tmp)), max(max_h, max(tmp))
-print(min_h, max_h)
-
-water = [[False] * n for _ in range(n)]    # 잠긴 지점인지 표시하는 리스트 초기화
-visited = [[False] * n for _ in range(n)]    # 안전 지역인지 순회할 때, 방문한 적 있는지 확인하는 리스트
-print(water)
-
-for height in range(min_h, max_h):
-    
-    # h 이하인 지역은 잠긴 지점 표시
-    water = do_water(hmap, water, n, height)
-    
+            if cities[r][c] > i and not visited[r][c]:
+                now += 1
+                is_safe(r, c, visited, i)
+    res = max(res, now)
+                
+print(res)
