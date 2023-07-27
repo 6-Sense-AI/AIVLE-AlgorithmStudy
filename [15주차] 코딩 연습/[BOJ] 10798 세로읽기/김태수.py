@@ -12,5 +12,5 @@ for i in range(1, 5):
 # print(max)
 for i in range(max):
     for j in range(5):
-        # if i < len(graph[j]):
-        #     print(graph[j][i], end="")
+        if i < len(graph[j]):
+            print(graph[j][i], end="")
