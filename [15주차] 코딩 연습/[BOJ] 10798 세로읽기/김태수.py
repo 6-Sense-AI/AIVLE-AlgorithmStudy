@@ -1,7 +1,7 @@
 import sys
 input = sys.stdin.readline
 
-graph = [input() for _ in range(5)]
+graph = [input().strip() for _ in range(5)]
 
 max = len(graph[0])
 for i in range(1, 5):
