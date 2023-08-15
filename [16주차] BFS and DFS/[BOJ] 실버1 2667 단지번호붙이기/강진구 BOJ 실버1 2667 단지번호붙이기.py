@@ -32,7 +32,7 @@ def dfs(graph, row, col):
 
         if 0<=nr<n and 0<=nc<n and graph[nr][nc]=='1':
             dfs(graph, nr, nc)
-        if i==3:
+        if i==3: 
             return cnt
     return cnt
     
