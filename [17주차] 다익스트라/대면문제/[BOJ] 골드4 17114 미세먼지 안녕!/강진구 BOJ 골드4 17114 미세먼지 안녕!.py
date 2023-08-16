@@ -26,6 +26,8 @@ graph = []
 for _ in range(r):
     graph.append(list(map(int, input().split())))
 
+
+
 clean = []
 
 for i in range(r):
@@ -37,6 +39,9 @@ for i in range(r):
 def diffusion(graph, clean):
     dr = [1,-1,0,0]
     dc = [0,0,1,-1]
+
+    # 미세먼지 확산 된 거를 따로 체크 해주고 확산 후 줄어든 애들을 따로 받아서 더해줌
+    arr = [[0 for _ in range(c)] for _ in range(r)]
 
     for row in range(r):
         for col in range(c):
@@ -50,10 +55,15 @@ def diffusion(graph, clean):
                 nc = col+dc[i]
 
                 if 0<=nr<r and 0<=nc<c and (nr,nc) not in clean:
-                    graph[nr][nc] += x//5
+                    arr[nr][nc] += x//5
                     flag += 1
             
             graph[row][col] -= (x//5) * flag
+    
+    for row in range(r):
+        for col in range(c):
+            graph[row][col] += arr[row][col]
+    
     return graph
 
 # 공기청정기 작동
@@ -92,7 +102,7 @@ def cleaner(graph, clean):
 
     graph[dwr] = list(que)
 
-    for i in range(dwr,r):
+    for i in range(dwr+1,r):
         y = graph[i][c-1]
         graph[i][c-1] = x
         x = y
@@ -115,9 +125,6 @@ for _ in range(t):
 s = 0
 
 for g in graph:
-    if -1 not in g:
-        s += sum(g)
-    else:
-        s += sum(g)+1
+    s += sum(g)
     
-print(s)
+print(s+2)
