@@ -46,3 +46,9 @@ def dijkstra(start):
                 heapq.heappush(q, (cal_distance, adjacency_node))
                 
     return distances
+
+
+result = dijkstra(start)
+
+for i in range(1, len(result)):
+    print("INF" if result[i] == float("inf") else result[i])
