@@ -1,3 +1,5 @@
+## 아직 다 못풀었음
+
 from collections import deque
 
 # 구역 표시하기
