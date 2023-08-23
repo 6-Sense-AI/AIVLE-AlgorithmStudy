@@ -38,16 +38,18 @@ def bfs(x, y):
 
     while que:
         x, y = que.pop(0)
+        dead = 0  # 사망구역
+        cnt = 0  # 몇 칸 돌았는지
 
         for i in range(4):
             nx = x + dx[i]
             ny = y + dy[i]
 
-            if nx > 501 or nx < 0 or ny > 501 or ny < 0:
+            if nx > 500 or nx < 0 or ny > 500 or ny < 0:
                 continue
 
-            dead = 0  # 사망구역
             cost = life + grp[nx][ny]
+            cnt += 1
 
             if cost > life and visited[nx][ny] == False:
                 visited[nx][ny] = True
@@ -60,8 +62,11 @@ def bfs(x, y):
 
             if cost < life and visited[nx][ny] == False:
                 visited[nx][ny] = True
-                dead = -1
+                dead += 1
                 continue
+        if dead == cnt:
+            life = -1
+            break
 
 
 bfs(0, 0)
