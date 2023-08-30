@@ -1,3 +1,4 @@
+# 아직 틀림
 n = int(input())
 s = n
 
