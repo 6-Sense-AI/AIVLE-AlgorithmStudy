@@ -23,8 +23,10 @@ from itertools import combinations # 조합 임포트
 def ck_dist(home, ck):
     dist = 0
     for i, j in home: # 집에서
+        temp = int(1e9)
         for i2, j1 in ck:
-            dist += min(abs(i2-i) + abs(j1-j)) # abs는 절대값 메소드
+            temp = min(temp, abs(i2-i) + abs(j1-j)) # abs는 절대값 메소드
+        dist += temp
     return dist
 
 
