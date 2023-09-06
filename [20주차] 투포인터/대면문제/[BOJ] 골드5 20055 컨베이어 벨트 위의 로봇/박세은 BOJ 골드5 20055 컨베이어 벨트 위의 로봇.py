@@ -5,9 +5,6 @@ robot = [0 for _ in range(n * 2)]
 process = 1
 
 while dmg.count(0) < k:
-    # process 증가 후 종료까지 반복
-    process += 1
-
     # 1단계 - 회전하기, 종료지점 로봇 삭제하기
     a = dmg[-1]
     del dmg[-1]
@@ -38,6 +35,11 @@ while dmg.count(0) < k:
     if robot[0] == 0 and dmg[0] != 0:
         robot[0] = 1
         dmg[0] -= 1
+
+    # 4단계 - 내구도 0인 칸 갯수 확인
+    if dmg.count(0) < k:
+        # process 증가 후 종료까지 반복
+        process += 1
 
 
 print(process)
