@@ -1,5 +1,4 @@
-# 예제는 다 맞는데 틀렸다네용..?
-
+# 나이트 반복 빼니까 맞았다!
 
 n, m = map(int, input().split())
 q = list(map(int, input().split()))  # 퀸
@@ -54,23 +53,17 @@ for q in q_idx:
                 break  # 이동 범위를 넘으면 반복문 탈출
 
 # k
-for k in k_idx:  # 퀸이랑 똑같
+for k in k_idx:
     for s in k_step:
         nx = k[0] + s[0]
         ny = k[1] + s[1]
 
-        while True:
-            if nx < n and nx >= 0 and ny < m and ny >= 0:
-                if chess[nx][ny] == "n":
-                    ans[nx][ny] = 0
-                    nx += s[0]
-                    ny += s[1]
+        if nx < n and nx >= 0 and ny < m and ny >= 0:
+            ans[nx][ny] = 0
 
-                else:
-                    break
+        else:
+            continue
 
-            else:
-                break
 a = 0
 
 for i in ans:  # 안전한 위치 총 합
