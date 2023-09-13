@@ -105,5 +105,5 @@ def dfs(i, arr):
 
 dfs(1, seq[0])
 
-print(max_value)
-print(min_value)
+print(int(max_value))
+print(int(min_value))
