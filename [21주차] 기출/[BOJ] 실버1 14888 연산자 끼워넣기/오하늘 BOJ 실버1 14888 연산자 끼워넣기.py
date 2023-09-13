@@ -24,9 +24,7 @@ def solution(arr, cal):
             if temp > 0 : #양수
                 temp //= arr[i+1]
             else : # 음수
-                temp *= -1
-                temp //= arr[i+1]
-                temp *= -1
+                temp = -(abs(temp) // arr[i+1]) # 음수처리 이렇게 해주니까 시간초과 안남
     return temp
 
 
@@ -40,5 +38,5 @@ for i in permutations(cal,len(cal)):
     if mid_ans > max_ans : max_ans = mid_ans
     if mid_ans < min_ans : min_ans = mid_ans
 
-print(max_ans)
-print(min_ans)
+print(int(max_ans)) # int 처리 해줘야 함
+print(int(min_ans))
