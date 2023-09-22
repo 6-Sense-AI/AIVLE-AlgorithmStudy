@@ -1,10 +1,11 @@
 import sys
 input = sys.stdin.readline
+from collections import deque
 
-# 2차시도는 예제 4만 틀림
+# 데큐쓰니 해결.. 허무하도다 !! 허무해 !!
 
 # 톱니 바퀴
-t_w = [list(map(int,input().strip())) for i in range(4)]
+t_w = [deque(list(map(int,input().strip()))) for i in range(4)]
 # 1번은 idx 2, 2번은 26, 3번도 26 4번은 6 -> 맞닿은 곳
 
 # 회전 횟수
@@ -34,10 +35,11 @@ for _ in range(n):
         temp.append([t_w[i][6], t_w[i][2]])
 
     # 본인
-    if state == -1 :
-        tt = re_clock(t_w[start])
-    else : 
-        clock(t_w[start])     
+    # if state == -1 :
+    #     tt = re_clock(t_w[start])
+    # else : 
+    #     clock(t_w[start])     
+    t_w[start].rotate(state)
 
 
     # 감소
@@ -45,18 +47,22 @@ for _ in range(n):
         for j in range(start,0,-1):
             if temp[j][0] != temp[j-1][1]:
                 if (start-(j-1))%2 == 0:
-                    clock(t_w[j-1]) # 시계
+                    # clock(t_w[j-1]) # 시계
+                    t_w[j-1].rotate(state)
                 elif (start-(j-1))%2 != 0:
-                    re_clock(t_w[j-1]) # 반시계
+                    # re_clock(t_w[j-1]) # 반시계
+                    t_w[j-1].rotate(-1*state)
             elif temp[j][0] == temp[j-1][1]: break
     # 증가
     if start != 3:
         for j in range(start,3):
             if temp[j][1] != temp[j+1][0]:
                 if (start-(j+1))%2 == 0:
-                    clock(t_w[j+1]) # 시계
+                    # clock(t_w[j+1]) # 시계
+                    t_w[j+1].rotate(state)
                 elif (start-(j+1))%2 != 0:
-                    re_clock(t_w[j+1]) # 반시계
+                    # re_clock(t_w[j+1]) # 반시계
+                    t_w[j+1].rotate(-1*state)
             elif temp[j][1] == temp[j+1][0]: break   
 ans = 0
 
