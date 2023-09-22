@@ -1,7 +1,7 @@
 import sys
 input = sys.stdin.readline
 
-# 구글 안보고 1차 시도
+# 2차시도는 예제 4만 틀림
 
 # 톱니 바퀴
 t_w = [list(map(int,input().strip())) for i in range(4)]
@@ -23,55 +23,41 @@ def re_clock(arr): # 반시계
     arr[7] = cl_temp
 
 
-for i in range(n):
+for _ in range(n):
 
     start, state = map(int, input().split()) # 시작 num, 회전 방향
-    # 1 시계  -1 반시계
+    start = start-1 # 인덱스
 
     # 처음 상태 저장
     temp = [] # 처음 톱니 상태 저장
-    for j in range(4):
-        temp.append([t_w[j][6], t_w[j][2]])
+    for i in range(4):
+        temp.append([t_w[i][6], t_w[i][2]])
 
     # 본인
     if state == -1 :
-        tt = re_clock(t_w[start-1])
+        tt = re_clock(t_w[start])
     else : 
-        clock(t_w[start-1])
+        clock(t_w[start])     
+
 
     # 감소
-    i = 0
-    while 1: 
-        if start - i < 2: break # 감소 다 시켰으면 나옴
-
-        if temp[start-i-1][0] == temp[start-i-2][1]: break # 현재와 이전 값 비교
-
-        else :
-            state = -state
-            if state == -1 :
-                re_clock(t_w[start-1])
-            else : 
-                clock(t_w[start-1])
-            i -= 1
-
-    i = 0
-    # # 증가
-    while 1: 
-        if start + i > 3: break # 감소 다 시켰으면 나옴
-
-        if temp[start+i-1][1] == temp[start+i][0]: break # 현재와 다음 값 비교
-
-        else :
-            state = -state
-            if state == -1 :
-                tt = re_clock(t_w[start])
-            else : 
-                clock(t_w[start])
-            i += 1
-    print(t_w)
-
-print(t_w)
-
+    if start != 0:
+        for j in range(start,0,-1):
+            if temp[j][0] != temp[j-1][1]:
+                if (start-(j-1))%2 == 0:
+                    clock(t_w[j-1]) # 시계
+                elif (start-(j-1))%2 != 0:
+                    re_clock(t_w[j-1]) # 반시계
+            elif temp[j][0] == temp[j-1][1]: break
+    # 증가
+    if start != 3:
+        for j in range(start,3):
+            if temp[j][1] != temp[j+1][0]:
+                if (start-(j+1))%2 == 0:
+                    clock(t_w[j+1]) # 시계
+                elif (start-(j+1))%2 != 0:
+                    re_clock(t_w[j+1]) # 반시계
+            elif temp[j][1] == temp[j+1][0]: break   
 ans = 0
 
 if t_w[0][0] == 1 : ans+=1
