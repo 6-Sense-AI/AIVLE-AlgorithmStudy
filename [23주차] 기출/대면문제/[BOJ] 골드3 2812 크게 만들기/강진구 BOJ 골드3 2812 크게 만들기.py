@@ -14,28 +14,38 @@ cnt = 0
 ans = []
 que = deque(num)
 
-while que:
-    if cnt < k:
-        x = que.popleft()
-
-        if x > que[0]:
+while cnt < k:
+    x = que.popleft()
+    if ans:
+        if ans[-1] > x:
+            if x > que[0]:
+                ans.append(x)
+            else:
+                cnt += 1
+        elif ans[-1] == x:
             ans.append(x)
-            cnt += 1
-        elif x < que[0]:
-            if ans:
-                while ans:
-                    y = ans.pop()
-                    if y>=que[0]:
-                        break
-                    else:
-                        cnt += 1
         else:
+            while ans:
+                if ans[-1] >= x or cnt >= k:
+                    break
+                ans.pop()
+                cnt += 1
             ans.append(x)
-            ans.append(x)
-            que.popleft()
     else:
-        ans += list(que)
-        break
+        ans.append(x)
 
-print(ans)
+print(''.join(ans+list(que)))
 
+# 이게 풀이 스택으로 해서 해결함
+N, K = map(int, input().split())
+num = list(input())
+k = K
+stack = []
+
+for i in range(N):
+    while(k > 0 and stack and stack[-1] < num[i]):
+        stack.pop()
+        k-=1
+    stack.append(num[i])
+    
+print(''.join(stack[:N-K]))
