@@ -1,4 +1,4 @@
-## 런타임 에러 남 ㅠㅠ ##
+## 런타임 에러 남 ㅠㅠ ## >> index error 고침 / 틀렸다!
 ## 예제 다 맞음 ##
 
 n, k = map(int, input().split())
@@ -12,24 +12,14 @@ k -= start
 ans = [num_list[start]]
 i = start + 1
 
-while k != 0:
+while k != 0 and i < len(num_list):
     if ans[-1] < num_list[i]:
         ans.pop()
-        ans.append(num_list[i])
         k -= 1
 
-        if i < len(num_list):
-            i += 1
-        else:
-            break
-        
-    else:
-        ans.append(num_list[i])
+    ans.append(num_list[i])
+    i += 1
 
-        if i < len(num_list):
-            i += 1
-        else:
-            break
 
 for j in range(i, n):
     ans.append(num_list[j])
