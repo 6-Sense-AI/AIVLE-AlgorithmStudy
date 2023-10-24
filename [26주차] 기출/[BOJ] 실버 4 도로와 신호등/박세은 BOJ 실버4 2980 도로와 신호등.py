@@ -1,3 +1,5 @@
+# 나만 왤캐 원시인처럼 풀었지,,? 다들 천재임?
+
 import sys
 import copy
 
