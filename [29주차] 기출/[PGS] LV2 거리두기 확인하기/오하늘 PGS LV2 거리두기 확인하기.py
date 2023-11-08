@@ -1,6 +1,6 @@
 from collections import deque
 
-# 시도 1 : 테케는 맞는데 정확도 40%
+# 시도 2 : 테케는 맞는데 정확도 60%
 def solution(places):
     answer = []
     
@@ -37,7 +37,6 @@ def solution(places):
     
     for p in places:
         g = []
-        visited = [[False]*5 for _ in range(5)]
         
         # graph 생성
         for i in range(len(p)):
@@ -46,6 +45,7 @@ def solution(places):
         flag = 0
         for y in range(5):
             for x in range(5):
+                visited = [[False]*5 for _ in range(5)]
                 if g[x][y] == 'P':
                     if bfs(x,y,g,visited) == 0 :
                         flag = 1
@@ -54,6 +54,6 @@ def solution(places):
     
     return answer
 
-places = 	[["POOOP", "OXXOX", "OPXPX", "OOXOX", "POXXP"], ["POOPX", "OXPXP", "PXXXO", "OXXXO", "OOOPP"], ["PXOPX", "OXOXP", "OXPOX", "OXXOP", "PXPOX"], ["OOOXX", "XOOOX", "OOOXX", "OXOOX", "OOOOO"], ["PXPXP", "XPXPX", "PXPXP", "XPXPX", "PXPXP"]]
+places = [["POOPO", "OOOOO", "OOOXP", "OPOPX", "OOOOO"]]
 
 print(solution(places))
