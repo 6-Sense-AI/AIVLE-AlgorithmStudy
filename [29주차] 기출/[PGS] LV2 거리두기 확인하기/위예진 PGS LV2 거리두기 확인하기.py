@@ -1,11 +1,10 @@
-# 테스트 3, 8, 31 틀림... 해결중
-
-from itertools import permutations
+from itertools import combinations_with_replacement
 
 # 응시자가 거리두기를 지키고 있는지 확인하는 함수
 def is_human_safe(c_status, r, c):
     
-    for moves in permutations([(-1, 0), (1, 0), (0, -1), (0, 1)], 2):
+    # 맨해튼 거리로 확인하므로, 이동 가능 방향에서 중복으로 2개를 뽑아서 만들어야 함
+    for moves in combinations_with_replacement([(-1, 0), (1, 0), (0, -1), (0, 1)], 2):
         mr, mc = r, c
         for dr, dc in moves:
             mr, mc = mr + dr, mc + dc
