@@ -1,4 +1,4 @@
-# 테케는 완료 O, 제출 시 시간초과,,,,
+# 구름 visited 함수 만들어서 시간초과 해결
 
 n, m = map(int, input().split())
 grid = [list(map(int, input().split())) for _ in range(n)]    # 칸의 정보
@@ -19,6 +19,7 @@ def copy_water(r, c):
 
 for d, step in moves:
     d -= 1
+    visited = [[False] * n for _ in range(n)]
 
     # 구름 이동, 물 내리기
     for i in range(len(clouds)):
@@ -28,6 +29,7 @@ for d, step in moves:
         c = (n + c + dc * step) % n
 
         clouds[i] = (r, c)    # 구름 이동
+        visited[r][c] = True
         grid[r][c] += 1    # 물 내리기
 
     # 물복사 시전
@@ -39,7 +41,7 @@ for d, step in moves:
     tmp = set()
     for i in range(n):
         for j in range(n):
-            if grid[i][j] >= 2 and (i, j) not in clouds:
+            if grid[i][j] >= 2 and not visited[i][j]:
                 grid[i][j] -= 2
                 tmp.add((i, j))
     clouds = list(tmp)
