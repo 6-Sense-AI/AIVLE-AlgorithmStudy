@@ -1,29 +1,19 @@
 import sys
 input = sys.stdin.readline
 
+# dp 이중으로 선언하면 메모리 초과
+# 재 선언 하는 방식으로 생성
+
 n = int(input())
-arr = [list(map(int, input().split())) for _ in range (n)]
+arr = list(map(int, input().split())) # 처음 세개
 
-dp = [[0] * n for _ in range(n)] # 2차원 dp 최소
+maxDP = arr
+minDP = arr
 
-print(dp)
+for _ in range(n-1):
+    arr = list(map(int, input().split()))
+    # 세가지 값을 입력할 때 dp에 갱신
+    maxDP = [arr[0] + max(maxDP[0], maxDP[1]), arr[1] + max(maxDP), arr[2] + max(maxDP[1], maxDP[2])]
+    minDP = [arr[0] + min(minDP[0], minDP[1]), arr[1] + min(minDP), arr[2] + min(minDP[1], minDP[2])]
 
-for i in range(len(arr[0])):
-    dp[0][i] = arr[0][i] # dp 첫줄
-
-dp2 = dp.copy() # 최대
-
-# dp[y][x] 형태임
-for j in range(1,n): # 세로 y 
-    for i in range(0,n): # 가로 x
-        if i < 0 : # 왼쪽이 없는 경우
-            dp[i][j] = arr[i][j] + min(dp[i-1][j],dp[i-1][j+1])
-            dp2[i][j] = arr[i][j] + max(dp2[i-1][j],dp2[i-1][j+1])
-        elif i > n : # 오른쪽이 없는 경우
-            dp[i][j] = arr[i][j] + min(dp[i-1][j],dp[i-1][j-1])
-            dp2[i][j] = arr[i][j] + max(dp2[i-1][j],dp2[i-1][j-1])
-        else: # 둘다 가능
-            dp[i][j] = arr[i][j] + min(dp[i-1][j],dp[i-1][j-1],dp[i-1][j+1])
-            dp2[i][j] = arr[i][j] + max(dp2[i-1][j],dp2[i-1][j-1],dp2[i-1][j+1])
-
-print(max(dp2[n]),min(dp[n]))
+print(max(maxDP), min(minDP))
