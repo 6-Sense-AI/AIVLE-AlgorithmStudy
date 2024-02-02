@@ -37,7 +37,7 @@
     <td align="center"><a href="https://github.com/bokkuembab"><img src="https://avatars.githubusercontent.com/bokkuembab" width="130px;" alt=""></a></td>
     <td align="center"><a href="https://github.com/jingu1138"><img src="https://avatars.githubusercontent.com/jingu1138" width="130px;" alt=""></a></td>
     <td align="center"><a href="https://github.com/kimgitt"><img src="https://avatars.githubusercontent.com/kimgitt" width="130px;" alt=""></a></td>
-    <td align="center"><a href="https://github.com/krap4"><img src="https://avatars.githubusercontent.com/krap4" width="130px;" alt=""></a></td>
+    <td align="center"><a href="https://github.com/se-eun-park"><img src="https://avatars.githubusercontent.com/se-eun-park" width="130px;" alt=""></a></td>
     <td align="center"><a href="https://github.com/skw517"><img src="https://avatars.githubusercontent.com/skw517" width="130px;" alt=""></a></td>
     <td align="center"><a href="https://github.com/haneul5"><img src="https://avatars.githubusercontent.com/haneul5" width="130px;" alt=""></a></td>
   </tr>
@@ -45,7 +45,7 @@
     <td align="center"><a href="https://github.com/bokkuembab"><b>bokkuembab</b></a></td>
     <td align="center"><a href="https://github.com/jingu1138"><b>jingu1138</b></a></td>
     <td align="center"><a href="https://github.com/kimgitt"><b>kimgitt</b></a></td>
-    <td align="center"><a href="https://github.com/krap4"><b>krap4</b></a></td>
+    <td align="center"><a href="https://github.com/se-eun-park"><b>se-eun-park</b></a></td>
     <td align="center"><a href="https://github.com/skw517"><b>skw517</b></a></td>
     <td align="center"><a href="https://github.com/haneul5"><b>haneul5</b></a></td>
   </tr>
